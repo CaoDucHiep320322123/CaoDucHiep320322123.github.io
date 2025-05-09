@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thư Cảm Ơn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: sans-serif;
+      color: white;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .envelope {
+      width: 320px;
+      height: 200px;
+      background: #fff;
+      position: relative;
+      transform-origin: top;
+      animation: openEnvelope 3s forwards ease-in-out;
+      z-index: 2;
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-bottom: 100px solid #ddd;
+    }
+
+    @keyframes openEnvelope {
+      0% { transform: rotateX(0deg); opacity: 1; }
+      80% { transform: rotateX(-90deg); opacity: 0.5; }
+      100% { transform: rotateX(-120deg); opacity: 0; display: none; }
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out 3s forwards;
+      z-index: 3;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .main-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      transform: scale(0.2);
+      opacity: 0;
+      animation: zoomIn 2s ease-out 3.2s forwards;
+    }
+
+    @keyframes zoomIn {
+      0% {
+        transform: scale(0.2);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        font-size: 72px;
+        opacity: 1;
+      }
+    }
+
+    .typing {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 20px;
+      color: #ccc;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid orange;
+      width: 0;
+      margin-top: 20px;
+      animation: typing 5s steps(60, end) 5.5s forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: orange }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope"></div>
+
+  <div class="content">
+    <div class="main-text">Trân Trọng Cảm Ơn Bạn Đã Đồng Hành Những Năm Cấp Ba</div>
+    <div class="typing">Ngày 11 tháng 5 này mình xin phép được chụp chung với bạn một tấm hình nhen!</div>
+  </div>
+
+  <div class="stars"></div>
+
+  <script>
+    const stars = document.querySelector('.stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${1 + Math.random() * 2}s`;
+      stars.appendChild(star);
+    }
+  </script>
+</body>
+</html>
